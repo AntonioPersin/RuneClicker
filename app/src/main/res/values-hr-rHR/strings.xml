@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kliker</string>
+    <string name="counter_title">Klikova</string>
+    <string name="Click_button">Klik!</string>
+    <string name="Click_land_left_button">Lijevi klik!</string>
+    <string name="Click_land_right_button">Desni klik!</string>
+    <string name="shop_button">Trgovina</string>
+    <string name="exit_button">Zatvori aplikaciju</string>
+    <string name="back_button">Natrag na glavni ekran</string>
+    <string name="web_link">Igraj Cookie Clicker</string>
+    <string name="shop_item_tired_finger">Umorni prst</string>
+    <string name="shop_buy">Prizovi</string>
+    <string name="save_button">Spremi</string>
+    <string name="load_button">Učitaj</string>
+    <string name="tired_finger_desc">This finger will click once every 10 seconds.</string>
+</resources>
