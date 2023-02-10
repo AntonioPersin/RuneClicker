@@ -18,9 +18,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.database.DatabaseReference;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private int[] colors;
     private int colorIndex = 0;
     private DatabaseHelper mDatabaseHelper;
-    private FirebaseDatabaseHelper fDatabaseHelper;
-    private DatabaseReference fDatabaseReference;
     private HashMap<String, Integer> handlerCountersMap;
     private HashMap<String, List<Handler>> handlersMap;
 
@@ -55,12 +50,6 @@ public class MainActivity extends AppCompatActivity {
         colors = new int[]{Color.RED, Color.GREEN, Color.YELLOW};
         handlerCountersMap = getFingerOwnedAmounts();
         handlersMap = new HashMap<>();
-
-        //firebase leaderboard
-        FirebaseApp.initializeApp(this);
-        fDatabaseHelper = new FirebaseDatabaseHelper();
-        fDatabaseReference = fDatabaseHelper.getDatabaseReference();
-
 
 
         //setting up counter
@@ -151,14 +140,14 @@ public class MainActivity extends AppCompatActivity {
 
     private Handler createHandler(String name) {
         Cursor cursor = mDatabaseHelper.getFingerByName(name);
-        int seconds = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.KEY_FINGER_SECONDS));
+        long miliseconds = cursor.getLong(cursor.getColumnIndexOrThrow(DatabaseHelper.KEY_FINGER_MILISECONDS));
 
         Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 increaseCounter(null);
-                handler.postDelayed(this, seconds* 1000L);
+                handler.postDelayed(this, miliseconds);
             }
         };
         handler.post(runnable);
@@ -183,9 +172,6 @@ public class MainActivity extends AppCompatActivity {
         editor.putString(MAP_KEY, encoded);
 
         editor.apply();
-
-        //update Firebase highscore
-        fDatabaseReference.child("scores").push().setValue(new Score("TestDevice", counter));
     }
 
     public void loadCounter(View view) {
@@ -204,12 +190,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void resetGame(View view){
         counter=0;
-        counterTextView.setText(String.valueOf(counter));
+
         handlerCountersMap.forEach((finger,amount)->{
             mDatabaseHelper.updateOwnedByName(finger,0);
         });
         handlerCountersMap=getFingerOwnedAmounts();
         saveCounter(view);
+        counterTextView.setText(String.valueOf(counter));
     }
 
     private HashMap<String, Integer> getFingerOwnedAmounts() {

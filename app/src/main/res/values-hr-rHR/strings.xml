@@ -13,5 +13,8 @@
     <string name="shop_buy">Prizovi</string>
     <string name="save_button">Spremi</string>
     <string name="load_button">Učitaj</string>
-    <string name="tired_finger_desc">This finger will click once every 10 seconds.</string>
+    <string name="shopItemName">Prst</string>
+    <string name="shopItemCostTitle">Cijena</string>
+    <string name="shopItemOwnedTitle">Prizvanih</string>
+    <string name="reset_game">Resetiraj igru</string>
 </resources>

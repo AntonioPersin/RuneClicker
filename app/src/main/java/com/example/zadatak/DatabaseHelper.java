@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String KEY_FINGER_NAME = "fingerName";
     public static final String KEY_FINGER_COST = "fingerCost";
     public static final String KEY_FINGER_OWNED = "fingerOwned";
-    public static final String KEY_FINGER_SECONDS = "fingerSeconds";
+    public static final String KEY_FINGER_MILISECONDS = "fingerSeconds";
     public static final String KEY_FINGER_DESC = "fingerDesc";
 
     public DatabaseHelper(Context context) {
@@ -35,21 +35,56 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 KEY_FINGER_NAME + " TEXT," +
                 KEY_FINGER_COST + " INTEGER," +
                 KEY_FINGER_OWNED + " INTEGER," +
-                KEY_FINGER_SECONDS + " INTEGER," +
+                KEY_FINGER_MILISECONDS + " LONG," +
                 KEY_FINGER_DESC + " TEXT" +
                 ")";
 
         db.execSQL(CREATE_FINGERS_TABLE);
 
-        //tiredFinger
+        //tired Finger
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_FINGER_NAME, "Tired Finger");
-        contentValues.put(KEY_FINGER_COST, 10);
+        contentValues.put(KEY_FINGER_COST, 30);
         contentValues.put(KEY_FINGER_OWNED, 0);
-        contentValues.put(KEY_FINGER_SECONDS, 10);
-        contentValues.put(KEY_FINGER_DESC, "This finger will click once every 10 seconds. You can have a maximum of 5 Tired Fingers.");
+        contentValues.put(KEY_FINGER_MILISECONDS, 15000);
+        contentValues.put(KEY_FINGER_DESC, "This finger will click once every 15 seconds. You can have a maximum of 5 Tired Fingers.");
         db.insert(TABLE_FINGERS, null, contentValues);
 
+        //furled Finger
+        contentValues = new ContentValues();
+        contentValues.put(KEY_FINGER_NAME, "Furled Finger");
+        contentValues.put(KEY_FINGER_COST, 50);
+        contentValues.put(KEY_FINGER_OWNED, 0);
+        contentValues.put(KEY_FINGER_MILISECONDS, 10000);
+        contentValues.put(KEY_FINGER_DESC, "This finger will click once every 10 seconds. You can have a maximum of 5 Furled Fingers.");
+        db.insert(TABLE_FINGERS, null, contentValues);
+
+        //Wizened Finger
+        contentValues = new ContentValues();
+        contentValues.put(KEY_FINGER_NAME, "Wizened Finger");
+        contentValues.put(KEY_FINGER_COST, 180);
+        contentValues.put(KEY_FINGER_OWNED, 0);
+        contentValues.put(KEY_FINGER_MILISECONDS, 5000);
+        contentValues.put(KEY_FINGER_DESC, "This finger will click once every 5 seconds. You can have a maximum of 5 Wizened Fingers.");
+        db.insert(TABLE_FINGERS, null, contentValues);
+
+        //Bloody Finger
+        contentValues = new ContentValues();
+        contentValues.put(KEY_FINGER_NAME, "Bloody Finger");
+        contentValues.put(KEY_FINGER_COST, 500);
+        contentValues.put(KEY_FINGER_OWNED, 0);
+        contentValues.put(KEY_FINGER_MILISECONDS, 1000);
+        contentValues.put(KEY_FINGER_DESC, "This finger will click once every second. You can have a maximum of 3 Bloody Fingers.");
+        db.insert(TABLE_FINGERS, null, contentValues);
+
+        //Recusant Finger
+        contentValues = new ContentValues();
+        contentValues.put(KEY_FINGER_NAME, "Recusant Finger");
+        contentValues.put(KEY_FINGER_COST, 1000);
+        contentValues.put(KEY_FINGER_OWNED, 0);
+        contentValues.put(KEY_FINGER_MILISECONDS, 300);
+        contentValues.put(KEY_FINGER_DESC, "This finger will click once every 0.3 seconds. You can have a maximum of 2 Recusant Fingers.");
+        db.insert(TABLE_FINGERS, null, contentValues);
     }
 
     // Called when the database needs to be upgraded.
@@ -65,7 +100,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getFingerByName(String fingerName) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_FINGERS,
-                new String[]{KEY_FINGER_ID, KEY_FINGER_NAME, KEY_FINGER_COST, KEY_FINGER_OWNED, KEY_FINGER_SECONDS, KEY_FINGER_DESC},
+                new String[]{KEY_FINGER_ID, KEY_FINGER_NAME, KEY_FINGER_COST, KEY_FINGER_OWNED, KEY_FINGER_MILISECONDS, KEY_FINGER_DESC},
                 KEY_FINGER_NAME + "=?",
                 new String[]{fingerName},
                 null, null, null, null);

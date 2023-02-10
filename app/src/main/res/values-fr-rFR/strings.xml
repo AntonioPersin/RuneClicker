@@ -13,5 +13,8 @@
     <string name="shop_buy">Convoquer</string>
     <string name="save_button">Sauvegarder</string>
     <string name="load_button">Chargement</string>
-    <string name="tired_finger_desc">This finger will click once every 10 seconds.</string>
+    <string name="shopItemName">Doigt</string>
+    <string name="shopItemCostTitle">Coût</string>
+    <string name="shopItemOwnedTitle">Invoqué</string>
+    <string name="reset_game">Réinitialiser le jeu</string>
 </resources>

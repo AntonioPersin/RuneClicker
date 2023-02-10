@@ -12,11 +12,8 @@
     <string name="shop_buy">Summon</string>
     <string name="save_button">Save</string>
     <string name="load_button">Load</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="tired_finger_desc">This finger will click once every 10 seconds.</string>
-    <string name="shopItemName">Finger</string>
     <string name="shopItemCostTitle">Cost</string>
     <string name="shopItemOwnedTitle">Summoned</string>
     <string name="reset_game">Reset the game</string>
+    <string name="shopItemName">Finger</string>
 </resources>
